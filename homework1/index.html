@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <div class="container big">
+        <div class="main">
+          <div class="img_Container">
+            <div class="myclass"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 1) Дан массив const arr = [1, 5, 7, 9] с помощью Math.min и spread оператора, найти минимальное число в массиве, решение задание должно состоять из одной строки
+2) Напишите функцию createCounter, которая создает счетчик и возвращает объект с двумя методами: increment и decrement. Метод increment должен увеличивать значение счетчика на 1, а метод decrement должен уменьшать значение счетчика на 1. Значение счетчика должно быть доступно только через методы объекта, а не напрямую.
+3) Напишите рекурсивную функцию findElementByClass, которая принимает корневой элемент дерева DOM и название класса в качестве аргументов и возвращает первый найденный элемент с указанным классом в этом дереве. -->
+
+    <!-- Пример
+const rootElement = document.getElementById('root');
+const targetElement = findElementByClass(rootElement, 'my-class');
+console.log(targetElement); -->
+    <script>
+      // 1.
+      arr = [1, 5, 7, 9, 0];
+      console.log(Math.min(...arr));
+
+      //2.
+      function createCounter() {
+        let counter;
+        return {
+          increment: (counter) => {
+            return ++counter;
+          },
+          decrement: (counter) => {
+            return --counter;
+          },
+        };
+      }
+
+      let a = createCounter();
+      console.log(a.increment(5));
+      console.log(a.decrement(5));
+
+      // 3.
+      const rootElement = document.getElementById("root");
+      const abcc = document.querySelector(".container");
+      //   проверка
+      //   console.log(rootElement.children[0].classList.contains("big"));
+      //   console.log(rootElement.children[0].children);
+
+      function findElementByClas(rootElement, myclass) {
+        if (rootElement.children.length < 1) {
+          return console.log(`элемента с  классом ${myclass} нет`);
+        }
+        if (rootElement.children[0].classList.contains(myclass)) {
+          return rootElement.children[0];
+        }
+        return findElementByClas(rootElement.children[0], myclass);
+      }
+      console.log(findElementByClas(rootElement, "myclass"));
+    </script>
+  </body>
+</html>
