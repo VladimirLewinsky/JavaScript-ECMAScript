@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Реализуйте класс Book, представляющий книгу, со следующими свойствами и методами:
+
+    Свойство title (название) - строка, название книги.
+    Свойство author (автор) - строка, имя автора книги.
+    Свойство pages (количество страниц) - число, количество страниц в книге.
+    Метод displayInfo() - выводит информацию о книге (название, автор и количество страниц). -->
+
+    <!-- 2.
+    Задание 2: ""Управление списком студентов""
+    Реализуйте класс Student, представляющий студента, со следующими свойствами и методами:
+
+    Свойство name (имя) - строка, имя студента.
+    Свойство age (возраст) - число, возраст студента.
+    Свойство grade (класс) - строка, класс, в котором учится студент.
+    Метод displayInfo() - выводит информацию о студенте (имя, возраст и класс).
+    javascript
+
+    // Пример использования класса
+    const student1 = new Student(""John Smith"", 16, ""10th grade"");
+    student1.displayInfo();
+    // Вывод:
+    // Name: John Smith
+    // Age: 16
+    // Grade: 10th grade
+
+    const student2 = new Student(""Jane Doe"", 17, ""11th grade"");
+    student2.displayInfo();
+    // Вывод:
+    // Name: Jane Doe
+    // Age: 17
+    // Grade: 11th grade" -->
+  </body>
+  <script>
+    // 1
+    class Book{
+        title;
+        author;
+        pages;
+        displayinfo(){
+            console.log(`${this.title}, ${this.author}, ${this.pages}`);
+        }
+    }
+
+    const Book1 = new Book;
+    Book1.title = "Преступление и Наказание";
+    Book1.author = "Ф.М. Достоевский";
+    Book1.pages = 471;
+    Book1.displayinfo();
+    console.log(Book1);
+
+    // 2
+    class Student {
+        constructor(name,age,grade){
+            this.name = name;
+            this.age = age;
+            this.grade = grade;
+        };
+        displayinfo(){
+            console.log(`Name: ${this.name}`);
+            console.log(`Age: ${this.age}`);
+            console.log(`Grade: ${this.grade}`);
+        }
+    }
+
+    const student2 = new Student("Jane Doe",17,"11th grade");
+    student2.displayinfo();
+  </script>
+</html>
