@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .container {
+       
+    }
+    .dogs {
+      width: 150px;
+      height: 150px;
+      
+    }
+  </style>
+  <body>
+    <script type="module">
+      const url = "https://jsonplaceholder.typicode.com/users";
+
+      async function personList(url) {
+        const res = await fetch(url);
+        const data = await res.json();
+        // console.log(data);
+        // console.log(res);
+        return data;
+      }
+
+      try {
+        const divContainer = document.createElement("div");
+        document.body.appendChild(divContainer);
+        // создаем список
+        let newdata = await personList(url);
+        console.log(newdata);
+        newdata.forEach((element) => {
+          const person = document.createElement("h1");
+          person.textContent = element.name;
+          divContainer.append(person);
+
+          const deleteBtn = document.createElement("button");
+          deleteBtn.textContent = "Удалить";
+          divContainer.append(deleteBtn);
+
+          deleteBtn.addEventListener("click", () => {
+            person.remove();
+            deleteBtn.remove();
+            newdata = newdata.filter((item) => item !== element);
+            console.log(newdata);
+          });
+        });
+      } catch (error) {
+        console.log("server not found");
+      }
+
+      //   Необходимо реализовать отрисовку 10 картинок собак из API https://dog.ceo/dog-api/ с интервалом в 3 секунды.
+
+      const url2 = "https://dog.ceo/api/breeds/image/random";
+
+      async function randomDog(url) {
+        const res = await fetch(url);
+        const data = await res.json();
+        return data;
+      }
+
+      try {
+        const containerDog = document.createElement("div");
+        document.body.appendChild(containerDog);
+        containerDog.className = "container";
+        let dogTimer = setInterval(async function () {
+          // сразу 10 (не успевают загрузить собак)
+          // for (let index = 0; index < 10; index++) {
+          //   let newdata2 = await randomDog(url2);
+          //   const dogImg = document.createElement("img");
+          //   dogImg.className = "dogs"
+          //   dogImg.src = newdata2.message;
+          //   containerDog.appendChild(dogImg);
+          // }
+
+          // по 1 собаке
+          let newdata2 = await randomDog(url2);
+          const dogImg = document.createElement("img");
+          dogImg.className = "dogs";
+          dogImg.src = newdata2.message;
+          containerDog.appendChild(dogImg);
+        }, 3000);
+
+        setTimeout(() => {
+          clearInterval(dogTimer);
+          alert("Собаки кончились, перезагрузите страницу");
+        }, 31000);
+      } catch (error) {
+        console.log("server not found");
+      }
+    </script>
+  </body>
+</html>
